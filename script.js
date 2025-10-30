@@ -57,73 +57,68 @@ document.addEventListener("click", () => {
 });
 
 // =====================================================
-// THEME SWITCHER (8 themes) - UI & logic
+// PREMIUM THEME SWITCHER (Glass UI + Animated Toggle)
 // =====================================================
-const themeToggle = document.getElementById("themeToggle");
-const themePanel = document.getElementById("themePanel");
-const swatches = Array.from(document.querySelectorAll(".theme-swatch"));
-const themeReset = document.getElementById("themeReset");
-const STORAGE_KEY = "selectedTheme";
+const toggleBtn = document.querySelector(".theme-toggle");
+const switcher = document.createElement("div");
+switcher.classList.add("theme-switcher");
+document.body.appendChild(switcher);
 
-// open/close panel
-if (themeToggle && themePanel) {
-  themeToggle.addEventListener("click", (e) => {
-    e.stopPropagation();
-    themePanel.classList.toggle("active");
-    themePanel.setAttribute("aria-hidden", themePanel.classList.contains("active") ? "false" : "true");
+const themes = [
+  { primary: "#6A0DAD", secondary: "#B19CD9", accent: "#C0C0C0", bg: "#F8F8FF" }, // Royal Purple
+  { primary: "#D63384", secondary: "#FFB6C1", accent: "#FFD700", bg: "#FFF8FB" }, // Pink Gold
+  { primary: "#0047AB", secondary: "#87CEFA", accent: "#FFBF00", bg: "#F0F8FF" }, // Sky Royal
+  { primary: "#228B22", secondary: "#90EE90", accent: "#FFD700", bg: "#F9FFF9" }, // Fresh Green
+  { primary: "#FF4500", secondary: "#FFDAB9", accent: "#8B0000", bg: "#FFF9F5" }, // Sunset Flame
+  { primary: "#191970", secondary: "#9370DB", accent: "#E0E0E0", bg: "#F9F9FF" }, // Midnight Purple
+  { primary: "#FF1493", secondary: "#FFB6C1", accent: "#FFD700", bg: "#FFF9FB" }, // Barbie Pink
+  { primary: "#008080", secondary: "#40E0D0", accent: "#FFD700", bg: "#F0FFFF" }  // Teal Glow
+];
+
+// Create color buttons
+themes.forEach((t) => {
+  const btn = document.createElement("div");
+  btn.className = "theme-btn";
+  btn.style.background = `linear-gradient(135deg, ${t.primary}, ${t.secondary})`;
+  btn.addEventListener("click", () => {
+    document.documentElement.style.setProperty("--primary", t.primary);
+    document.documentElement.style.setProperty("--secondary", t.secondary);
+    document.documentElement.style.setProperty("--accent", t.accent);
+    document.documentElement.style.setProperty("--bg", t.bg);
+    localStorage.setItem("themeColor", JSON.stringify(t));
   });
-}
-
-// apply saved theme on load
-const saved = localStorage.getItem(STORAGE_KEY);
-if (saved) {
-  document.body.classList.add(saved);
-  // mark active swatch
-  swatches.forEach(s => s.classList.toggle("active", s.dataset.theme === saved));
-}
-
-// swatch click
-swatches.forEach(s => {
-  s.addEventListener("click", (e) => {
-    const themeName = s.dataset.theme;
-    if (!themeName) return;
-    // remove existing theme-* classes
-    document.body.className = document.body.className.split(" ").filter(cl => !cl.startsWith("theme-")).join(" ");
-    document.body.classList.add(themeName);
-    localStorage.setItem(STORAGE_KEY, themeName);
-    // active visuals
-    swatches.forEach(x => x.classList.remove("active"));
-    s.classList.add("active");
-    // close panel
-    themePanel.classList.remove("active");
-    themePanel.setAttribute("aria-hidden", "true");
-  });
+  switcher.appendChild(btn);
 });
 
-// reset
-if (themeReset) {
-  themeReset.addEventListener("click", (e) => {
-    localStorage.removeItem(STORAGE_KEY);
-    // remove theme-* classes
-    document.body.className = document.body.className.split(" ").filter(cl => !cl.startsWith("theme-")).join(" ");
-    swatches.forEach(s => s.classList.remove("active"));
-    themePanel.classList.remove("active");
-    themePanel.setAttribute("aria-hidden", "true");
-  });
+// Apply saved theme on load
+const savedTheme = localStorage.getItem("themeColor");
+if (savedTheme) {
+  const t = JSON.parse(savedTheme);
+  document.documentElement.style.setProperty("--primary", t.primary);
+  document.documentElement.style.setProperty("--secondary", t.secondary);
+  document.documentElement.style.setProperty("--accent", t.accent);
+  document.documentElement.style.setProperty("--bg", t.bg);
 }
 
-// close panel when clicking outside
+// Toggle animation + icon switch
+toggleBtn.addEventListener("click", () => {
+  const isOpen = switcher.classList.toggle("show");
+  toggleBtn.textContent = isOpen ? "❌" : "🎨";
+  toggleBtn.setAttribute("aria-label", isOpen ? "Close theme panel" : "Open theme panel");
+});
+
+// Close switcher on outside click
 document.addEventListener("click", (e) => {
-  if (!themePanel.contains(e.target) && e.target !== themeToggle && themePanel.classList.contains("active")) {
-    themePanel.classList.remove("active");
-    themePanel.setAttribute("aria-hidden", "true");
+  if (!switcher.contains(e.target) && e.target !== toggleBtn && switcher.classList.contains("show")) {
+    switcher.classList.remove("show");
+    toggleBtn.textContent = "🎨";
   }
 });
 
-// keyboard support: Esc closes panel
+// Keyboard support (ESC to close)
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && themePanel.classList.contains("active")) {
-    themePanel.classList.remove("active");
-    themePanel.setAttribute("aria-hidden", "true");
+  if (e.key === "Escape" && switcher.classList.contains("show")) {
+    switcher.classList.remove("show");
+    toggleBtn.textContent = "🎨";
   }
 });

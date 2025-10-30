@@ -4,10 +4,29 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Jiya Gautam | Portfolio</title>
+
+  <!-- ✅ Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+  <meta name="theme-color" content="#7E57C2" />
+
+  <!-- ✅ SEO Meta Tags -->
+  <meta name="description" content="Portfolio of Jiya Gautam — Front-End Web Developer skilled in HTML, CSS, and JavaScript. Explore my responsive designs and creative projects." />
+  <meta name="keywords" content="Jiya Gautam, web developer, portfolio, front-end, HTML, CSS, JavaScript, responsive design" />
+  <meta name="author" content="Jiya Gautam" />
+
+  <!-- ✅ Open Graph (For LinkedIn, Twitter, etc.) -->
+  <meta property="og:title" content="Jiya Gautam | Portfolio" />
+  <meta property="og:description" content="Front-End Developer passionate about creative and responsive web design." />
+  <meta property="og:image" content="jiya.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jiyag1454-oss.github.io/portfolio-website/" />
+
+  <!-- ✅ Styles -->
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
 
+<body>
   <!-- HEADER -->
   <header class="site-header">
     <div class="container header-inner">
@@ -29,7 +48,9 @@
         <div class="hero-text">
           <h1>Hi, I'm <span class="accent">Jiya Gautam</span></h1>
           <p class="tagline">HTML • CSS • JavaScript</p>
-          <p class="lead">I build responsive, creative web experiences. Currently working on my Temple Website — more coming soon!</p>
+          <p class="lead">
+            I build responsive, creative web experiences. Currently working on my Temple Website — more coming soon!
+          </p>
           <div class="cta-row">
             <a class="btn" href="#projects">View Projects</a>
             <a class="btn outline" href="https://www.linkedin.com/in/jiya-gautam-462b78331" target="_blank" rel="noopener">LinkedIn</a>
@@ -38,7 +59,7 @@
 
         <div class="hero-card">
           <div id="photoBox" class="photo-placeholder">
-            <img src="jiya.jpg" alt="Jiya Gautam" class="profile-photo">
+            <img src="jiya.jpg" alt="Jiya Gautam" class="profile-photo" />
           </div>
         </div>
       </div>
@@ -48,7 +69,10 @@
     <section id="about" class="section">
       <div class="container">
         <h2>About Me</h2>
-        <p>I am a front-end web developer focused on crafting responsive, accessible, and elegant designs using HTML, CSS, and JavaScript.</p>
+        <p>
+          I’m a front-end web developer who loves creating clean, responsive, and interactive web experiences.
+          My focus is on crafting websites that balance creativity with usability, powered by HTML, CSS, and JavaScript.
+        </p>
       </div>
     </section>
 
@@ -76,7 +100,9 @@
             <div class="project-thumb">Portfolio</div>
             <div class="project-body">
               <h3>Personal Portfolio Website</h3>
-              <p>Developed and deployed a responsive personal portfolio using HTML, CSS, and JavaScript to showcase my creative work.</p>
+              <p>
+                Developed and deployed a responsive personal portfolio using HTML, CSS, and JavaScript to showcase my creative work.
+              </p>
             </div>
           </div>
 
@@ -84,7 +110,9 @@
             <div class="project-thumb">Temple</div>
             <div class="project-body">
               <h3>Maa Jwala Dham Shakti Peeth</h3>
-              <p>A full responsive temple website highlighting devotion and design harmony — built with HTML, CSS, and JS.</p>
+              <p>
+                A fully responsive temple website highlighting devotion and design harmony — built with HTML, CSS, and JS.
+              </p>
             </div>
           </div>
         </div>
@@ -107,33 +135,27 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container">
-      <p>© <span class="year"></span> Jiya Gautam | Designed with 💜</p>
+      <p>© 2025 Jiya Gautam — Crafted with 💜 using HTML, CSS & JS</p>
     </div>
   </footer>
 
-  <!-- THEME SWITCHER HTML (floating button + panel) -->
+  <!-- THEME SWITCHER -->
   <div id="themeSwitchRoot" aria-hidden="false">
-    <!-- Floating circle -->
     <button id="themeToggle" class="theme-toggle" aria-label="Open theme panel" title="Choose theme">🎨</button>
 
-    <!-- Panel -->
     <div id="themePanel" class="theme-panel" role="dialog" aria-label="Theme selector" aria-hidden="true">
       <div class="theme-panel-inner">
         <h4>Choose theme</h4>
-
         <div class="themes-list" role="list">
-          <!-- 8 circular swatches (no text) -->
           <button class="theme-swatch" data-theme="theme-sunset" aria-label="Sunset Glow"></button>
           <button class="theme-swatch" data-theme="theme-lavender" aria-label="Lavender Night"></button>
           <button class="theme-swatch" data-theme="theme-royal" aria-label="Royal Blue"></button>
           <button class="theme-swatch" data-theme="theme-rose" aria-label="Rose Blush"></button>
-
           <button class="theme-swatch" data-theme="theme-mint" aria-label="Mint Fresh"></button>
           <button class="theme-swatch" data-theme="theme-lavdream" aria-label="Lavender Dream"></button>
           <button class="theme-swatch" data-theme="theme-darkgold" aria-label="Dark Gold"></button>
           <button class="theme-swatch" data-theme="theme-autumn" aria-label="Autumn Brown"></button>
         </div>
-
         <div class="theme-actions">
           <button id="themeReset" class="theme-reset" title="Reset theme">Reset</button>
           <small class="theme-note">Your choice is saved</small>
